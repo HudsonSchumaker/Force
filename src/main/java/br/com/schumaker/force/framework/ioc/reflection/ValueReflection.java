@@ -14,7 +14,7 @@ import java.lang.reflect.Parameter;
  * This class is a singleton and provides a global point of access to its instance.
  *
  * @author Hudson Schumaker
- * @version 1.0.0
+ * @version 1.0.1
  */
 public final class ValueReflection {
     private static final ValueReflection INSTANCE = new ValueReflection();
@@ -50,8 +50,8 @@ public final class ValueReflection {
                 }
             }
             return instance;
-        } catch (Exception e) {
-            throw new ForceException(e.getMessage());
+        } catch (Exception ex) {
+            throw new ForceException(ex.getMessage());
         }
     }
 
@@ -76,8 +76,8 @@ public final class ValueReflection {
                 }
             }
             return null;
-        } catch (Exception e) {
-            throw new ForceException(e.getMessage());
+        } catch (Exception ex) {
+            throw new ForceException(ex.getMessage());
         }
     }
 }

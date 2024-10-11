@@ -16,7 +16,7 @@ import java.util.List;
  * This class is a singleton and provides a global point of access to its instance.
  *
  * @author Hudson Schumaker
- * @version 1.1.0
+ * @version 1.1.1
  */
 public final class TableReflection {
     private static final TableReflection INSTANCE = new TableReflection();
@@ -89,11 +89,13 @@ public final class TableReflection {
         for (Field field : this.getFields(entity.getClass())) {
             var columnAnnotation = field.getAnnotation(Pk.class);
             if (columnAnnotation != null) {
-                field.setAccessible(true);
                 try {
-                    return field.get(entity);
-                } catch (IllegalAccessException e) {
-                    throw new ForceException(e.getMessage(), e);
+                    field.setAccessible(true);
+                    Object value = field.get(entity);
+                    field.setAccessible(false);
+                    return value;
+                } catch (IllegalAccessException ex) {
+                    throw new ForceException(ex.getMessage(), ex);
                 }
             }
         }
