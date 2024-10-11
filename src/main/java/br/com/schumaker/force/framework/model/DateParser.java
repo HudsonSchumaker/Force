@@ -46,14 +46,23 @@ public final class DateParser {
     public static Date parseToDate(String dateStr) {
         for (DateTimeFormatter formatter : DATE_FORMATTERS) {
             try {
+                // Handle Instant separately since it parses directly to Instant
                 if (formatter == DateTimeFormatter.ISO_INSTANT) {
                     return Date.from(Instant.parse(dateStr));
-                } else {
-                    LocalDateTime localDateTime = LocalDateTime.parse(dateStr, formatter);
-                    return Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant());
                 }
+
+
+                if (formatter.equals(DATE_FORMATTERS.get(3))) { // dd/MM/yyyy format
+                    LocalDate localDate = LocalDate.parse(dateStr, formatter);
+                    return Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
+                }
+
+                // Handle LocalDateTime parsing
+                LocalDateTime localDateTime = LocalDateTime.parse(dateStr, formatter);
+                return Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant());
+
             } catch (DateTimeParseException e) {
-                // Continue to the next formatter
+                // Continue to next formatter
             }
         }
         throw new ForceException("Invalid date format: " + dateStr);
