@@ -1,6 +1,7 @@
-package br.com.schumaker.force.app.view;
+package br.com.schumaker.force.app.view.mapper;
 
 import br.com.schumaker.force.app.model.Product;
+import br.com.schumaker.force.app.view.ProductDTO;
 import br.com.schumaker.force.framework.ioc.annotations.bean.Component;
 import br.com.schumaker.force.framework.model.ModelViewMapper;
 import br.com.schumaker.force.framework.web.view.Page;
