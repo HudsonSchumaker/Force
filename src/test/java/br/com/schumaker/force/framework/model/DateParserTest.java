@@ -7,6 +7,7 @@ import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.util.Date;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -82,6 +83,24 @@ public class DateParserTest {
 
         // Assert
         assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testParseToDate() {
+        // Arrange
+        String dateStrISO = "2021-02-14T03:29:28.259Z";
+        String dateStrCustom = "14/02/2021";
+        Date expectedISO = Date.from(Instant.parse(dateStrISO));
+        LocalDateTime localDateTimeCustom = LocalDateTime.of(2021, 2, 14, 0, 0);
+        Date expectedCustom = Date.from(localDateTimeCustom.atZone(ZoneId.systemDefault()).toInstant());
+
+        // Act
+        Date actualISO = DateParser.parseToDate(dateStrISO);
+        Date actualCustom = DateParser.parseToDate(dateStrCustom);
+
+        // Assert
+        assertEquals(expectedISO, actualISO);
+        assertEquals(expectedCustom, actualCustom);
     }
 
     @Test

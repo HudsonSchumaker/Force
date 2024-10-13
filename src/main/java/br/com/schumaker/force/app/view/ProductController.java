@@ -2,6 +2,7 @@ package br.com.schumaker.force.app.view;
 
 import br.com.schumaker.force.app.model.Product;
 import br.com.schumaker.force.app.service.ProductService;
+import br.com.schumaker.force.app.view.mapper.Product2ProductDTO;
 import br.com.schumaker.force.framework.ioc.annotations.bean.Value;
 import br.com.schumaker.force.framework.ioc.annotations.controller.Controller;
 import br.com.schumaker.force.framework.ioc.annotations.controller.Delete;
@@ -58,7 +59,7 @@ public class ProductController {
         var productPage = service.list();
         var productDTOPage = mapper.from(productPage);
 
-        System.out.println(headers.headers().get("User-agent"));
+        //System.out.println(headers.headers().get("User-agent"));
         return ResponseView.ok().body(productDTOPage).headers("info", name).build();
     }
 
@@ -126,8 +127,7 @@ public class ProductController {
         var product = mapper.map(dto, Product.class);
         var id = service.save(product);
 
-        return ResponseView.created()
-                .body(new ProductView(
+        return ResponseView.created().body(new ProductView(
                     id,
                     dto.name(),
                     dto.description(),
@@ -145,8 +145,7 @@ public class ProductController {
             return ResponseView.notFound().build();
         }
 
-        return ResponseView.ok()
-                .body(new ProductView(
+        return ResponseView.ok().body(new ProductView(
                     updated.getId(),
                     updated.getName(),
                     updated.getDescription(),
