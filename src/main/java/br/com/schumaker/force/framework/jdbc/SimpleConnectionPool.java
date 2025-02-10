@@ -40,7 +40,6 @@ public final class SimpleConnectionPool {
         } catch (SQLException | ClassNotFoundException ex) {
             throw new ForceException("Error initializing connection pool: " + ex.getMessage(), ex);
         }
-
     }
 
     public static SimpleConnectionPool getInstance() {

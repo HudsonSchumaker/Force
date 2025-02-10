@@ -66,6 +66,8 @@ public class PastValidation implements Validation {
             }
         } catch (IllegalAccessException e) {
             throw new ForceException("Failed to validate: " + field.getName(), e);
+        } finally {
+            field.setAccessible(false);
         }
     }
 }

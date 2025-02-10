@@ -29,6 +29,7 @@ public final class PatchHelper {
                 Field field = entityClass.getDeclaredField(key);
                 field.setAccessible(true);
                 field.set(entity, value);
+                field.setAccessible(false);
             } catch (NoSuchFieldException | IllegalAccessException ex) {
                 throw new ForceException("Error applying patch to entity.", ex);
             }

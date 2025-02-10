@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * The IoCContainer class represents the Inversion of Control (IoC) container.
@@ -117,6 +118,13 @@ public final class IoCContainer implements IoC {
     @Override
     public void registerController(List<Class<?>> controllers) {
         controllers.forEach(it -> this.managedController.add(ManagedController.builder(it)));
+    }
+
+    @Override
+    public List<ManagedComponent> getComponents() {
+        return managedClasses.values().stream().filter(m -> m instanceof ManagedComponent)
+                .map(m -> (ManagedComponent) m)
+                .collect(Collectors.toList());
     }
 
     /**

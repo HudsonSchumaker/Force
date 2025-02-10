@@ -45,6 +45,8 @@ public final class MaxValidation implements Validation {
             }
         } catch (IllegalAccessException e) {
             throw new ForceException(e.getMessage());
+        } finally {
+            field.setAccessible(false);
         }
     }
 }

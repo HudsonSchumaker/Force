@@ -126,4 +126,11 @@ public interface IoC {
      * @param controllers the list of controller classes to register
      */
     void registerController(List<Class<?>> controllers);
+
+    /**
+     * Get a list of managed components.
+     *
+     * @return the list of managed components
+     */
+    List<ManagedComponent> getComponents();
 }

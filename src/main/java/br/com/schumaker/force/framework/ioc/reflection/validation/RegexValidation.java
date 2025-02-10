@@ -31,6 +31,8 @@ public class RegexValidation implements Validation {
                 }
             } catch (IllegalAccessException e) {
                 throw new ForceException("Failed to access field value", e);
+            } finally {
+                field.setAccessible(false);
             }
         }
     }

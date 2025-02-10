@@ -3,6 +3,7 @@ package br.com.schumaker.force.app.service;
 import br.com.schumaker.force.app.exception.TicketException;
 import br.com.schumaker.force.app.model.Ticket;
 import br.com.schumaker.force.app.model.db.TicketRepository;
+import br.com.schumaker.force.framework.ioc.annotations.bean.Inject;
 import br.com.schumaker.force.framework.ioc.annotations.bean.Service;
 import br.com.schumaker.force.framework.ioc.reflection.validation.EmailValidator;
 import br.com.schumaker.force.framework.model.PatchHelper;
@@ -13,11 +14,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 public class TicketService {
 
     private final TicketRepository repository;
+
+    @Inject
+    // All the validators will be injected by the IoC container. (One instance of all classes that implements Validator interface)
+    private List<Validator> validators;
 
     public TicketService(TicketRepository repository) {
         this.repository = repository;
@@ -28,6 +34,14 @@ public class TicketService {
     }
 
     public Ticket create(Ticket newTicket) {
+        List<Boolean> validationResults = validators.stream()
+                .map(validator -> validator.validate(newTicket.getCountry()))
+                .toList();
+
+        if (validationResults.contains(false)) {
+            throw new TicketException("Invalid country: " + newTicket.getCountry());
+        }
+
         var id = repository.save(newTicket);
         if (id.isEmpty()) {
             throw new TicketException("Error creating ticket.");

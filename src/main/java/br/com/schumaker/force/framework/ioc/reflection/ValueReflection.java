@@ -46,6 +46,7 @@ public final class ValueReflection {
                         field.setAccessible(true);
                         String value = environment.getKey(key);
                         field.set(instance, parser.apply(value));
+                        field.setAccessible(false);
                     }
                 }
             }

@@ -44,6 +44,8 @@ public class EmailValidation implements Validation {
             }
         } catch (IllegalAccessException e) {
             throw new ForceException("Failed to validate field " + field.getName(), e);
+        } finally {
+            field.setAccessible(false);
         }
     }
 }
