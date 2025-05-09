@@ -46,6 +46,7 @@ public class HealthControllerTest {
          assertEquals(200, response.getHttpCode());
          assertNotNull(response.getBody().hostName());
          assertNotNull(response.getBody().ip());
+         assertNotNull(response.getBody().forceVersion());
          assertNotNull(response.getBody().osName());
          assertNotNull(response.getBody().osVersion());
          assertNotNull(response.getBody().osArch());

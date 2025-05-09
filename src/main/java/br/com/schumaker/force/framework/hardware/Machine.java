@@ -1,6 +1,7 @@
 package br.com.schumaker.force.framework.hardware;
 
 import br.com.schumaker.force.framework.exception.ForceException;
+import br.com.schumaker.force.framework.ioc.AppProperties;
 
 import java.lang.management.ManagementFactory;
 import java.lang.management.OperatingSystemMXBean;
@@ -166,5 +167,14 @@ public final class Machine {
      */
     public static Integer defaultMaxThreads() {
         return Math.max(1, getNumberProcessors() * 2);
+    }
+
+    /**
+     * Returns the version of Force.
+     *
+     * @return Force version.
+     */
+    public static String getForceVersion() {
+        return AppProperties.FMK_VERSION;
     }
 }

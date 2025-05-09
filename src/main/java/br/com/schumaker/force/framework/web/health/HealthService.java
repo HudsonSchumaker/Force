@@ -35,6 +35,7 @@ public class HealthService {
         return new HealthInfoDTO(
                 Machine.getHostName(),
                 Machine.getIp(),
+                Machine.getForceVersion(),
                 Machine.getJvmName(),
                 Machine.getJavaVendor(),
                 Machine.getJavaVersion(),

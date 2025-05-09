@@ -12,6 +12,7 @@ package br.com.schumaker.force.framework.web.health;
 public record HealthInfoDTO(
         String hostName,
         String ip,
+        String forceVersion,
         String jvmName,
         String javaVendor,
         String javaVersion,
