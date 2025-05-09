@@ -299,4 +299,42 @@ CREATE TABLE product (
       @Past
       private Date birthDate;
   }
+  ```
+### 19. `@Range`
+- **Purpose**: Marks a field as a range value.
+- **Attributes**:
+    - `min`: The minimum value.
+    - `max`: The maximum value.
+    - `message`: The validation message.
+- **Example**:
+- ```java
+  public class User {
+      @Range(min = 1, max = 100)
+      private int score;
+  }
+  ```
+### 20. `@Regex`
+- **Purpose**: Marks a field as a regex value.
+- **Attributes**:
+    - `value`: The regex pattern.
+    - `message`: The validation message.
+- **Example**:
+- ```java
+  public class User {
+      @Regex(value = "^[a-zA-Z0-9]+$", message = "Invalid username")
+      private String username;
+  }
+  ```
+  
+### 21. `@Password`
+- **Purpose**: Marks a field as a password.
+- **Attributes**:
+    - `value`: The validation message.
+- **Example**:
+- ```java
+  public class User {
+      @Password
+      private String password;
+  }
+  ```
 
