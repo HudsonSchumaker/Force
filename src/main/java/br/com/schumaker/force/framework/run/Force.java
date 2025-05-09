@@ -55,7 +55,12 @@ public final class Force {
      */
     private static void startWebServer() {
         try {
-            webServer = new WebServer(environment.getServerPort(), environment.getServerContext());
+            webServer = new WebServer(
+                    environment.getServerPort(),
+                    environment.getServerContext(),
+                    environment.getServerQueueSize(),
+                    environment.getServerMaxThreads()
+            );
             webServer.start();
         } catch (Exception ex) {
             throw new ForceException(ex.getMessage(), ExceptionCodes.WEB_SERVER_INIT_ERROR.getCode());

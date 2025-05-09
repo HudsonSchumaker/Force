@@ -46,7 +46,7 @@ public final class ResponseView<T> {
      *
      * @param httpCode the HTTP status code.
      */
-    public ResponseView(int httpCode) {
+    public ResponseView(Integer httpCode) {
         this(httpCode, (T) null);
     }
 
@@ -56,7 +56,7 @@ public final class ResponseView<T> {
      * @param httpCode the HTTP status code.
      * @param body the response body.
      */
-    public ResponseView(int httpCode, T body) {
+    public ResponseView(Integer httpCode, T body) {
         this(httpCode, body, new HashMap<>());
     }
 
@@ -66,7 +66,7 @@ public final class ResponseView<T> {
      * @param httpCode the HTTP status code.
      * @param headers the response body.
      */
-    public ResponseView(int httpCode, Map<String, String> headers) {
+    public ResponseView(Integer httpCode, Map<String, String> headers) {
         this(httpCode, null, headers);
     }
 
@@ -77,7 +77,7 @@ public final class ResponseView<T> {
      * @param body the response body.
      * @param headers a map of header names and values.
      */
-    public ResponseView(int httpCode, T body, Map<String, String> headers) {
+    public ResponseView(Integer httpCode, T body, Map<String, String> headers) {
         this.body = body;
         this.headers = headers;
         this.httpCode = httpCode;
@@ -88,7 +88,7 @@ public final class ResponseView<T> {
      *
      * @return the HTTP status code.
      */
-    public int getHttpCode() {
+    public Integer getHttpCode() {
         return this.httpCode;
     }
 
