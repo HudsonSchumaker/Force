@@ -1,5 +1,7 @@
 package br.com.schumaker.force.framework.ioc;
 
+import br.com.schumaker.force.framework.hardware.Machine;
+
 import java.util.Properties;
 
 import static br.com.schumaker.force.framework.ioc.AppProperties.DB_MAX_POOL_SIZE;
@@ -22,6 +24,7 @@ public class Environment {
     private static final String SERVER_CONTEXT_DEFAULT = "/";
     private static final String JWT_EXPIRATION_DEFAULT = "3600";
     private static final String DB_MX_CONNECTIONS_DEFAULT = "8";
+    private static final String SERVER_QUEUE_SIZE_DEFAULT = "4096";
 
     private static final Environment INSTANCE = new Environment();
     private final Properties properties;
@@ -99,5 +102,23 @@ public class Environment {
      */
     public Long getJwtExpiration() {
         return Long.parseLong(properties.getProperty(AppProperties.JWT_EXPIRATION, JWT_EXPIRATION_DEFAULT));
+    }
+
+    /**
+     * Retrieves the maximum number of max number of threads from the environment properties.
+     *
+     * @return the maximum number of threads for web server.
+     */
+    public Integer getServerMaxThreads() {
+        return Integer.parseInt(properties.getProperty(AppProperties.SERVER_MAX_THREADS, Machine.defaultMaxThreads().toString()));
+    }
+
+    /**
+     * Retrieves the server queue size from the environment properties.
+     *
+     * @return the server queue size.
+     */
+    public Integer getServerQueueSize() {
+        return Integer.parseInt(properties.getProperty(AppProperties.SERVER_QUEUE_SIZE, SERVER_QUEUE_SIZE_DEFAULT));
     }
 }

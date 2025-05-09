@@ -24,7 +24,7 @@ public final class Machine {
      *
      * @return the number of available processors.
      */
-    public static int getNumberProcessors() {
+    public static Integer getNumberProcessors() {
         return Runtime.getRuntime().availableProcessors();
     }
 
@@ -66,14 +66,25 @@ public final class Machine {
     }
 
     /**
+     * Returns the free memory of the machine.
+     *
+     * @return the free memory of the machine.
+     */
+    public static long getJvmTotalMemory() {
+        Runtime runtime = Runtime.getRuntime();
+        return runtime.totalMemory(); // JVM total memory
+    }
+
+    /**
      * Returns the used memory of the machine.
      *
      * @return the used memory of the machine.
      */
-    public static long getUsedMemory() {
-        long totalMemory = ((com.sun.management.OperatingSystemMXBean) osBean).getTotalMemorySize();
-        long freeMemory = ((com.sun.management.OperatingSystemMXBean) osBean).getFreeMemorySize();
-        return totalMemory - freeMemory;
+    public static long getJvmUsedMemory() {
+        Runtime runtime = Runtime.getRuntime();
+        long totalMemory = runtime.totalMemory(); // JVM total memory
+        long freeMemory = runtime.freeMemory();   // JVM free memory
+        return totalMemory - freeMemory;          // JVM used memory
     }
 
     /**
@@ -146,5 +157,14 @@ public final class Machine {
      */
     public static String getLoggedUserName() {
         return System.getProperty("user.name");
+    }
+
+    /**
+     * Returns the maximum number of threads that can be created.
+     *
+     * @return the maximum number of threads.
+     */
+    public static Integer defaultMaxThreads() {
+        return Math.max(1, getNumberProcessors() * 2);
     }
 }

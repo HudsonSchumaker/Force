@@ -24,10 +24,10 @@ public final class WebServer {
      * @param context the context path for the server.
      * @throws Exception if an error occurs during server initialization.
      */
-    public WebServer(Integer port, String context) throws Exception {
-        server = HttpServer.create(new InetSocketAddress(port), 4096);
+    public WebServer(Integer port, String context, Integer backlog, Integer threads) throws Exception {
+        server = HttpServer.create(new InetSocketAddress(port), backlog);
         server.createContext(context, new InboundHandler());
-        server.setExecutor(Executors.newFixedThreadPool(Machine.getNumberProcessors() * 2));
+        server.setExecutor(Executors.newFixedThreadPool(threads));
 
         // Register a shutdown hook to stop the server gracefully
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
