@@ -113,4 +113,81 @@ public class ResponseViewTest {
         assertEquals("Test Body", responseView.getBody());
         assertNotNull(responseView.getHeaders());
     }
+
+    @Test
+    public void testStaticNoContentBuilder() {
+        // Arrange & Act
+        ResponseView<String> responseView = ResponseView.noContent().build();
+
+        // Assert
+        assertEquals(204, responseView.getHttpCode());
+        assertNull(responseView.getBody());
+        assertNotNull(responseView.getHeaders());
+    }
+
+    @Test
+    public void testStaticAcceptedBuilder() {
+        // Arrange & Act
+        ResponseView<String> responseView = ResponseView.accepted().body("Test Body").build();
+
+        // Assert
+        assertEquals(202, responseView.getHttpCode());
+        assertEquals("Test Body", responseView.getBody());
+        assertNotNull(responseView.getHeaders());
+    }
+
+    @Test
+    public void testStaticNotFoundBuilder() {
+        // Arrange & Act
+        ResponseView<String> responseView = ResponseView.notFound().body("Test Body").build();
+
+        // Assert
+        assertEquals(404, responseView.getHttpCode());
+        assertEquals("Test Body", responseView.getBody());
+        assertNotNull(responseView.getHeaders());
+    }
+
+    @Test
+    public void testStaticInternalServerErrorBuilder() {
+        // Arrange & Act
+        ResponseView<String> responseView = ResponseView.internalServerError().body("Test Body").build();
+
+        // Assert
+        assertEquals(500, responseView.getHttpCode());
+        assertEquals("Test Body", responseView.getBody());
+        assertNotNull(responseView.getHeaders());
+    }
+
+    @Test
+    public void testStaticUnauthorizedBuilder() {
+        // Arrange & Act
+        ResponseView<String> responseView = ResponseView.unauthorized().body("Test Body").build();
+
+        // Assert
+        assertEquals(401, responseView.getHttpCode());
+        assertEquals("Test Body", responseView.getBody());
+        assertNotNull(responseView.getHeaders());
+    }
+
+    @Test
+    public void testStaticForbiddenBuilder() {
+        // Arrange & Act
+        ResponseView<String> responseView = ResponseView.forbidden().body("Test Body").build();
+
+        // Assert
+        assertEquals(403, responseView.getHttpCode());
+        assertEquals("Test Body", responseView.getBody());
+        assertNotNull(responseView.getHeaders());
+    }
+
+    @Test
+    public void testStaticConflictBuilder() {
+        // Arrange & Act
+        ResponseView<String> responseView = ResponseView.conflict().body("Test Body").build();
+
+        // Assert
+        assertEquals(409, responseView.getHttpCode());
+        assertEquals("Test Body", responseView.getBody());
+        assertNotNull(responseView.getHeaders());
+    }
 }

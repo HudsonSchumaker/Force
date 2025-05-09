@@ -55,7 +55,10 @@ public class ValidationReflectionTest {
         @Regex(value = "^(\\d{4}[- ]?){3}\\d{4}$", message = "Invalid credit card number")
         private String creditCardField;
 
-        // Getters and setters
+        @Password
+        private String passwordField;
+
+        // Setters
         public void setNotNullField(String notNullField) { this.notNullField = notNullField; }
         public void setNotBlankField(String notBlankField) { this.notBlankField = notBlankField; }
         public void setNotEmptyField(String notEmptyField) { this.notEmptyField = notEmptyField; }
@@ -68,6 +71,7 @@ public class ValidationReflectionTest {
         public void setPastDateTimeField(LocalDateTime pastDateTimeField) { this.pastDateTimeField = pastDateTimeField; }
         public void setFutureDateTimeField(LocalDateTime futureDateTimeField) { this.futureDateTimeField = futureDateTimeField; }
         public void setCreditCardField(String creditCardField) { this.creditCardField = creditCardField; }
+        public void setPasswordField(String passwordField) { this.passwordField = passwordField; }
     }
 
     @Test
@@ -314,5 +318,35 @@ public class ValidationReflectionTest {
 
         // Assert
         assertTrue(exception.getMessage().contains("Invalid credit card number"));
+    }
+
+    @Test
+    public void testPasswordValidation() {
+        // Arrange
+        // Arrange
+        TestClass testClass = new TestClass();
+        testClass.setNotNullField("notNull");
+        testClass.setNotBlankField("notBlank");
+        testClass.setNotEmptyField("notEmpty");
+        testClass.setEmailField("jhonny@mail.com");
+        testClass.setMinField(15);
+        testClass.setMaxField(64);
+        testClass.setRangeField(8);
+        testClass.setPastField(LocalDate.now().minusDays(1));
+        testClass.setFutureField(LocalDate.now().plusDays(1));
+        testClass.setCreditCardField("6711-8006-6373-6080");
+        testClass.setPasswordField("P@ssw0rd");
+
+        // Act & Assert
+        assertDoesNotThrow(() -> ValidationReflection.getInstance().validate(testClass));
+
+        // Arrange with invalid password
+        testClass.setPasswordField("12345678");
+
+        // Act
+        ForceException exception = assertThrows(ForceException.class, () -> ValidationReflection.getInstance().validate(testClass));
+
+        // Assert
+        assertTrue(exception.getMessage().contains("Field passwordField is not a valid password. Must contain at least 8 digits, one uppercase letter, one digit, and one special character."));
     }
 }

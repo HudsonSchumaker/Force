@@ -1,15 +1,6 @@
 package br.com.schumaker.force.framework.ioc.reflection.validation;
 
-import br.com.schumaker.force.framework.ioc.annotations.validations.Email;
-import br.com.schumaker.force.framework.ioc.annotations.validations.Future;
-import br.com.schumaker.force.framework.ioc.annotations.validations.Max;
-import br.com.schumaker.force.framework.ioc.annotations.validations.Min;
-import br.com.schumaker.force.framework.ioc.annotations.validations.NotBlank;
-import br.com.schumaker.force.framework.ioc.annotations.validations.NotEmpty;
-import br.com.schumaker.force.framework.ioc.annotations.validations.NotNull;
-import br.com.schumaker.force.framework.ioc.annotations.validations.Past;
-import br.com.schumaker.force.framework.ioc.annotations.validations.Range;
-import br.com.schumaker.force.framework.ioc.annotations.validations.Regex;
+import br.com.schumaker.force.framework.ioc.annotations.validations.*;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
@@ -55,6 +46,7 @@ public final class ValidationReflection {
         validationStrategies.put(Past.class, new PastValidation());
         validationStrategies.put(Future.class, new FutureValidation());
         validationStrategies.put(Regex.class, new RegexValidation());
+        validationStrategies.put(Password.class, new PasswordValidation());
     }
 
     public static ValidationReflection getInstance() {

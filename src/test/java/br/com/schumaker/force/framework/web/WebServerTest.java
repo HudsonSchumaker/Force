@@ -23,7 +23,7 @@ public class WebServerTest {
     @BeforeEach
     public void setUp() throws Exception {
         int port = findAvailablePort();
-        webServer = new WebServer(port, "/test");
+        webServer = new WebServer(port, "/test", 10, 10);
     }
 
     @AfterEach
@@ -33,7 +33,7 @@ public class WebServerTest {
 
     @Test
     public void testWebServerInitialization() {
-        assertDoesNotThrow(() -> new WebServer(findAvailablePort(), "/test"));
+        assertDoesNotThrow(() -> new WebServer(findAvailablePort(), "/test", 10, 10));
     }
 
     @Test
@@ -43,7 +43,7 @@ public class WebServerTest {
 
     @Test
     public void testWebServerInitializationWithInvalidPort() {
-        assertThrows(Exception.class, () -> new WebServer(-1, "/test"));
+        assertThrows(Exception.class, () -> new WebServer(-1, "/test", 10, 10));
     }
 
     private int findAvailablePort() {
