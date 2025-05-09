@@ -11,7 +11,7 @@ package br.com.schumaker.force.framework.ioc;
 public class AppProperties {
     // Framework properties
     public static final String FMK_NAME = "Force";
-    public static final String FMK_VERSION = "0.32.0";
+    public static final String FMK_VERSION = "0.33.0";
     public static final String FMK_AUTHOR = "Hudson Schumaker";
 
     // Application properties
@@ -33,6 +33,8 @@ public class AppProperties {
     // Server properties
     protected static final String SERVER_PORT = "force.server.port";
     protected static final String SERVER_CONTEXT = "force.server.context";
+    protected static final String SERVER_QUEUE_SIZE = "force.server.queue.size";
+    protected static final String SERVER_MAX_THREADS = "force.server.max.threads";
 
     private AppProperties() {}
 }
