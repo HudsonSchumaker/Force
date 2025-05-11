@@ -6,8 +6,12 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * The ManagedServiceTest class.
- * This class is responsible for testing the ManagedService class.
+ * The ManagedConfigurationTest class is responsible for testing the ManagedConfiguration class.
+ * It includes tests for the builder method and the instance creation of managed configurations.
+ *
+ * @see ManagedConfiguration
+ * @author Hudson Schumaker
+ * @version 1.0.0
  */
 public class ManagedServiceTest {
     private ManagedService managedService;

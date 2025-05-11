@@ -8,6 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * The MapperTest class.
  * This class is responsible for testing the Mapper class.
  *
+ * @see Mapper
  * @author Hudson Schumaker
  * @version 1.0.0
  */

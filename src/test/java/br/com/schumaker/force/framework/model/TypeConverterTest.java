@@ -15,6 +15,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * The TypeConverterTest class.
  * This class is responsible for testing the TypeConverter class.
  *
+ * @see TypeConverter
  * @author Hudson Schumaker
  * @version 1.0.0
  */
@@ -163,5 +164,62 @@ public class TypeConverterTest {
 
         // Act & Assert
         assertEquals(expected, TypeConverter.typeParsers.get(UUID.class).apply(value));
+    }
+
+    @Test
+    public void testNullConversion() {
+        // Arrange, Act & Assert
+        assertNull(TypeConverter.convert(String.class, null));
+    }
+
+    @Test
+    public void testSqlTimestampConversion() {
+        // Arrange
+        java.sql.Timestamp timestamp = java.sql.Timestamp.valueOf("2021-02-14 03:29:28");
+        LocalDateTime expected = timestamp.toLocalDateTime();
+
+        // Act
+        Object result = TypeConverter.convert(LocalDateTime.class, timestamp);
+
+        // Assert
+        assertEquals(expected, result);
+    }
+
+    @Test
+    public void testSqlTimestampToDateConversion() {
+        // Arrange
+        java.sql.Timestamp timestamp = java.sql.Timestamp.valueOf("2021-02-14 03:29:28");
+        java.util.Date expected = new java.util.Date(timestamp.getTime());
+
+        // Act
+        Object result = TypeConverter.convert(java.util.Date.class, timestamp);
+
+        // Assert
+        assertEquals(expected, result);
+    }
+
+    @Test
+    public void testUUIDToStringConversion() {
+        // Arrange
+        UUID uuid = UUID.randomUUID();
+        String expected = uuid.toString();
+
+        // Act
+        Object result = TypeConverter.convert(String.class, uuid);
+
+        // Assert
+        assertEquals(expected, result);
+    }
+
+    @Test
+    public void testNotSupportedTypeConversion() {
+        // Arrange
+        Object value = new Object();
+
+        // Act
+        Object result = TypeConverter.convert(Object.class, value);
+
+        // Assert
+        assertEquals(value, result);
     }
 }

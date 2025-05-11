@@ -9,6 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  * The PasswordValidationTest class.
  * This class is responsible for testing the PasswordValidator class.
  *
+ * @see PasswordValidator
  * @author Hudson Schumaker
  * @version 1.0.0
  */

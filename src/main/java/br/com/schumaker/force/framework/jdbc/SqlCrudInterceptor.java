@@ -38,11 +38,11 @@ public final class SqlCrudInterceptor<K, T> implements InvocationHandler {
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
         var list = Arrays.stream(target.getClass().getMethods()).map(Method::getName).toList();
-        List<?> result;
 
         if (list.contains(method.getName())) {
             return method.invoke(target, args);
         } else {
+            List<?> result;
             if (method.isAnnotationPresent(Query.class)) {
                 var rawQuery = method.getAnnotation(Query.class).value();
                 System.out.println("SQL: " + rawQuery);
@@ -69,7 +69,7 @@ public final class SqlCrudInterceptor<K, T> implements InvocationHandler {
         if (method.getReturnType().equals(List.class)) {
             return result;
         } else {
-            return result.isEmpty() ? Optional.empty() : Optional.of(result.get(0));
+            return result.isEmpty() ? Optional.empty() : Optional.of(result.getFirst());
         }
     }
 

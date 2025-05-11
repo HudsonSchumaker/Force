@@ -8,16 +8,16 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class InjectReflectionTest {
+public class InjectReflectionTest {
     private InjectReflection injectReflection;
 
     @BeforeEach
-    void setUp() {
+    public void setUp() {
         injectReflection = InjectReflection.getInstance();
     }
 
     @Test
-    void testInjectFieldBean() {
+    public void testInjectFieldBean() {
         // Arrange
         TestClass testInstance = new TestClass();
         IoCContainer.getInstance().registerBean(ManagedBean.builder(TestDependency.class, new TestDependency()));

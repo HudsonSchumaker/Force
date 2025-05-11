@@ -5,6 +5,14 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+/**
+ * The ModelViewMapperTest class is responsible for testing the ModelViewMapper interface.
+ * It includes tests for the target From(source) method, which maps a source object to a target object.
+ *
+ * @see ModelViewMapper
+ * @author Hudson Schumaker
+ * @version 1.0.0
+ */
 public class ModelViewMapperTest {
 
     @Test

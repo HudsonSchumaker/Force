@@ -14,6 +14,15 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * The TableReflectionTest class is responsible for testing the TableReflection class.
+ * It includes tests for methods related to table reflection, such as getting table names,
+ * primary keys, and column names.
+ *
+ * @see TableReflection
+ * @author Hudson Schumaker
+ * @version 1.0.0
+ */
 public class TableReflectionTest {
 
     private TableReflection tableReflection;

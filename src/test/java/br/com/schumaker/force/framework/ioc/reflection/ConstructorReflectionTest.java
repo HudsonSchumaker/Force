@@ -10,16 +10,24 @@ import java.lang.reflect.Constructor;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class ConstructorReflectionTest {
+/**
+ * The ConstructorReflectionTest class is responsible for testing the ConstructorReflection class.
+ * It includes tests for the instantiateWithInjectedBeans method.
+ *
+ * @see ConstructorReflection
+ * @author Hudson Schumaker
+ * @version 1.0.0
+ */
+public class ConstructorReflectionTest {
     private ConstructorReflection constructorReflection;
 
     @BeforeEach
-    void setUp() {
+    public void setUp() {
         constructorReflection = ConstructorReflection.getInstance();
     }
 
     @Test
-    void testInstantiateWithInjectedBeans() throws Exception {
+    public void testInstantiateWithInjectedBeans() throws Exception {
         // Arrange
         IoCContainer.getInstance().registerBean(ManagedBean.builder(Dependency.class, new Dependency()));
         Constructor<TestClass> constructor = TestClass.class.getDeclaredConstructor(Dependency.class);
@@ -33,7 +41,7 @@ class ConstructorReflectionTest {
     }
 
     @Test
-    void testInstantiateWithInjectedBeansWrongConstructor() throws Exception {
+    public void testInstantiateWithInjectedBeansWrongConstructor() throws Exception {
         // Arrange
         Constructor<TestClass> constructor = null;
 
@@ -47,7 +55,7 @@ class ConstructorReflectionTest {
     }
 
     @Test
-    void testInstantiateWithInjectedBeansMissingBean() throws Exception {
+    public void testInstantiateWithInjectedBeansMissingBean() throws Exception {
         // Arrange
         Constructor<TestClass> constructor = TestClass.class.getDeclaredConstructor(Dependency.class);
 

@@ -11,10 +11,10 @@ import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class GlobalExceptionHandlerReflectionTest {
+public class GlobalExceptionHandlerReflectionTest {
 
     @Test
-    void testGetMethods() throws NoSuchMethodException {
+    public void testGetMethods() throws NoSuchMethodException {
         // Act
         Map<Class<?>, Pair<Method, List<Parameter>>> methods = GlobalExceptionHandlerReflection.getMethods(TestClass.class);
         Pair<Method, List<Parameter>> pair = methods.get(RuntimeException.class);

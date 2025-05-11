@@ -12,6 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
  * The PropertiesReaderTest class.
  * This class is responsible for testing the PropertiesReader class.
  *
+ * @see PropertiesReader
  * @author Hudson Schumaker
  * @version 1.0.0
  */

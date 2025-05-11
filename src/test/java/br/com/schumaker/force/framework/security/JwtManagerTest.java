@@ -12,6 +12,7 @@ import java.util.Date;
  * The JwtManagerTest class.
  * This class is responsible for testing the JwtManager class.
  *
+ * @see JwtManager
  * @author Hudson Schumaker
  * @version 1.0.0
  */

@@ -8,6 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * The EmailValidatorTest class.
  * This class is responsible for testing the EmailValidator class.
  *
+ * @see EmailValidator
  * @author Hudson Schumaker
  * @version 1.0.0
  */

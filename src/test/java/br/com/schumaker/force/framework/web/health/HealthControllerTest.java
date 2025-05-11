@@ -11,6 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
  * The HealthControllerTest class.
  * This class is responsible for testing the HealthController class.
  *
+ * @see HealthController
  * @author Hudson Schumaker
  * @version 1.0.0
  */

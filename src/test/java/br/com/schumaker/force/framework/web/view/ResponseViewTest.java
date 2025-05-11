@@ -13,6 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertNull;
  * The ResponseViewTest class.
  * This class is responsible for testing the ResponseView class.
  *
+ * @see ResponseView
  * @author Hudson Schumaker
  * @version 1.0.0
  */

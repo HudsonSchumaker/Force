@@ -1,6 +1,5 @@
 package br.com.schumaker.force.framework.ioc;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -10,6 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  * The EnvironmentTest class.
  * This class is responsible for testing the Environment class.
  *
+ * @see Environment
  * @author Hudson Schumaker
  * @version 1.0.0
  */

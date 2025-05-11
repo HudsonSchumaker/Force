@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * The TripleTest class.
  * This class is responsible for testing the Triple class.
  *
+ * @see Triple
  * @author Hudson Schumaker
  * @version 1.0.0
  */

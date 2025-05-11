@@ -10,6 +10,14 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * The ManagedRepositoryTest class is responsible for testing the ManagedRepository class.
+ * It includes tests for the builder method and the instance creation of managed repositories.
+ *
+ * @see ManagedRepository
+ * @author Hudson Schumaker
+ * @version 1.0.0
+ */
 public class ManagedRepositoryTest {
     private ManagedRepository managedRepository;
 

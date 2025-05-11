@@ -13,6 +13,14 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * The ManagedGlobalExceptionHandlerTest class is responsible for testing the ManagedGlobalExceptionHandler class.
+ * It includes tests for the getFqn, getInstance, and geMethod methods.
+ *
+ * @see ManagedGlobalExceptionHandler
+ * @author Hudson Schumaker
+ * @version 1.0.0
+ */
 public class ManagedGlobalExceptionHandlerTest {
 
     @BeforeEach

@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * The PairTest class.
  * This class is responsible for testing the Pair class.
  *
+ * @see Pair
  * @author Hudson Schumaker
  * @version 1.0.0
  */
