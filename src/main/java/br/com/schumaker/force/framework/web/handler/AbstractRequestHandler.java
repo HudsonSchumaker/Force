@@ -19,7 +19,7 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
 
 /**
- * The PutHandler class.
+ * The AbstractRequestHandler class.
  * This class is responsible for processing HTTP_POST, HTTP_PUT requests.
  *
  * @author Hudson Schumaker

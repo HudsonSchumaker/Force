@@ -30,7 +30,7 @@ public final class Http {
     public static final String TEXT_CSV = "text/csv";
     public static final String TEXT_YAML = "text/yaml";
 
-    // HTTP Status Codes
+    // HTTP Status Codes - using native int type due @interface (annotations) cannot use Wrapper classes.
     // 1xx Informational
     public static final int HTTP_100 = 100;
     public static final int HTTP_101 = 101;

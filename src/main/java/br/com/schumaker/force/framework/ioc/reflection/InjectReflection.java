@@ -18,7 +18,6 @@ public final class InjectReflection {
     private static final InjectReflection INSTANCE = new InjectReflection();
     private static final IoCContainer iocContainer = IoCContainer.getInstance();
 
-
     private InjectReflection() {}
 
     public static InjectReflection getInstance() {
@@ -49,15 +48,15 @@ public final class InjectReflection {
                         // Check if the actual type is an interface
                         if (actualType instanceof Class && ((Class<?>) actualType).isInterface()) {
                             var components = iocContainer.getComponents();
-                            var list = new ArrayList<>(); // List of compatible components that will be injected
+                            var compatibleComponentList = new ArrayList<>(); // List of compatible components that will be injected
                             for (var component : components) {
                                 var componentClass = component.getInstance().getClass();
                                 // Check if the component is assignable to the actual type (interface)
                                 if (((Class<?>) actualType).isAssignableFrom(componentClass)) {
-                                    list.add(component.getInstance());
+                                    compatibleComponentList.add(component.getInstance());
                                 }
                             }
-                            field.set(instance, list);
+                            field.set(instance, compatibleComponentList);
                         }
                     } else {
                         var value = IoCContainer.getInstance().getBean(type.getName());

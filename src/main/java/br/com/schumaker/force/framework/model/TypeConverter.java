@@ -19,7 +19,7 @@ import java.util.function.Function;
  * The type parsers are stored in a static map and can be accessed using the type's class.
  *
  * @author Hudson Schumaker
- * @version 1.2.1
+ * @version 1.2.2
  */
 public final class TypeConverter {
     private static final Map<Class<?>, Function<Object, Object>> sqlMap = new HashMap<>();
@@ -87,7 +87,8 @@ public final class TypeConverter {
         if (value instanceof java.sql.Timestamp) {
             Function<Object, Object> converter = sqlMap.get(targetType);
             if (converter != null) {
-                value = converter.apply(value);
+                return converter.apply(value);
+
             }
         }
 

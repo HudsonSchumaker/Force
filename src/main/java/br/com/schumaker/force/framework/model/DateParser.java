@@ -51,7 +51,6 @@ public final class DateParser {
                     return Date.from(Instant.parse(dateStr));
                 }
 
-
                 if (formatter.equals(DATE_FORMATTERS.get(3))) { // dd/MM/yyyy format
                     LocalDate localDate = LocalDate.parse(dateStr, formatter);
                     return Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());

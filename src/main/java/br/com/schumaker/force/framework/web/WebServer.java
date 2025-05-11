@@ -1,6 +1,5 @@
 package br.com.schumaker.force.framework.web;
 
-import br.com.schumaker.force.framework.hardware.Machine;
 import com.sun.net.httpserver.HttpServer;
 import java.net.InetSocketAddress;
 import java.util.concurrent.Executors;
@@ -22,6 +21,8 @@ public final class WebServer {
      *
      * @param port the port number on which the server will listen.
      * @param context the context path for the server.
+     * @param backlog the maximum number of queued connections.
+     * @param threads the number of threads in the thread pool.
      * @throws Exception if an error occurs during server initialization.
      */
     public WebServer(Integer port, String context, Integer backlog, Integer threads) throws Exception {
