@@ -12,7 +12,6 @@ import java.util.Map;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class GlobalExceptionHandlerReflectionTest {
-
     @Test
     public void testGetMethods() throws NoSuchMethodException {
         // Act

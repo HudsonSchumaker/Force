@@ -12,6 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * The PatchHelperTest class.
  * This class is responsible for testing the PatchHelper class.
  *
+ * @see PatchHelper
  * @author Hudson Schumaker
  * @version 1.0.0
  */
