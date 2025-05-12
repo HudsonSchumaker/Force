@@ -1,9 +1,8 @@
 package br.com.schumaker.force.framework.ioc.reflection;
 
-import br.com.schumaker.force.framework.ioc.annotations.bean.Inject;
 import br.com.schumaker.force.framework.ioc.IoCContainer;
+import br.com.schumaker.force.framework.ioc.annotations.bean.Inject;
 import br.com.schumaker.force.framework.ioc.managed.ManagedBean;
-import br.com.schumaker.force.framework.ioc.managed.ManagedComponent;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -32,15 +31,6 @@ public class InjectReflectionTest {
         assertNotNull(testInstance.getDependency());
     }
 
-    static class TestClass {
-        @Inject
-        private TestDependency dependency;
-
-        public TestDependency getDependency() {
-            return dependency;
-        }
-    }
-
     @Test
     public void testInjectFieldBeanWithList() {
         // Arrange
@@ -60,12 +50,22 @@ public class InjectReflectionTest {
         void validate();
     }
 
-    static class TestDependency implements Validator{
+    static class TestDependency implements Validator {
         @Override
         public void validate() {
             // Validation logic
         }
     }
+
+    static class TestClass {
+        @Inject
+        private TestDependency dependency;
+
+        public TestDependency getDependency() {
+            return dependency;
+        }
+    }
+
     static class TestClassWithList {
         @Inject
         private List<Validator> dependencies;

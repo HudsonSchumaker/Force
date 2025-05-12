@@ -105,7 +105,10 @@ public final class Force {
      * @param <T> the type of the annotation.
      * @throws Exception if an error occurs during class registration.
      */
-    private static <T> void registerClassesWithAnnotation(String packageName, Class<? extends Annotation> annotation, ClassRegistrar<T> registrar, ProgressBar progressBar, String taskName) throws Exception {
+    private static <T> void registerClassesWithAnnotation(String packageName, Class<? extends Annotation> annotation,
+                                                          ClassRegistrar<T> registrar, ProgressBar progressBar,
+                                                          String taskName
+    ) throws Exception {
         List<Class<?>> classes = ClassScanner.getClassesWithAnnotation(packageName, annotation);
         registrar.register(classes);
         progressBar.update(1, taskName);
