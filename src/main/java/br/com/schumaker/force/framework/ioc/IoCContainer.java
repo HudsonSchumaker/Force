@@ -9,10 +9,8 @@ import br.com.schumaker.force.framework.ioc.managed.ManagedGlobalExceptionHandle
 import br.com.schumaker.force.framework.ioc.managed.ManagedRepository;
 import br.com.schumaker.force.framework.ioc.managed.ManagedService;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 
 /**
@@ -34,8 +32,8 @@ import java.util.stream.Collectors;
  */
 public final class IoCContainer implements IoC {
     private static final IoCContainer INSTANCE = new IoCContainer();
-    private final Map<String, ManagedClass<?>> managedClasses = new HashMap<>();
-    private final List<ManagedController> managedController = new ArrayList<>();
+    private final Map<String, ManagedClass<?>> managedClasses = new ConcurrentHashMap<>();
+    private final List<ManagedController> managedController = Collections.synchronizedList(new ArrayList<>());;
     private ManagedGlobalExceptionHandler globalExceptionHandler;
 
     private IoCContainer() {}
