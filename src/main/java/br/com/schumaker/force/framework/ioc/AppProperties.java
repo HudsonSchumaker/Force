@@ -11,7 +11,7 @@ package br.com.schumaker.force.framework.ioc;
 public class AppProperties {
     // Framework properties
     public static final String FMK_NAME = "Force";
-    public static final String FMK_VERSION = "0.33.1";
+    public static final String FMK_VERSION = "0.33.2";
     public static final String FMK_AUTHOR = "Hudson Schumaker";
 
     // Application properties
