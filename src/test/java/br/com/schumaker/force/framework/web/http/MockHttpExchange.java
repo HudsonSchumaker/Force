@@ -21,17 +21,11 @@ public class MockHttpExchange extends HttpExchange {
     public void setRequestHeaders(Headers headers) {
         this.requestHeaders.clear();
         this.requestHeaders = headers;
-        var x = 0;
     }
 
     @Override
     public Headers getRequestHeaders() {
         return requestHeaders;
-    }
-
-    public void setResponseHeaders(Headers headers) {
-        this.responseHeaders.clear();
-        this.responseHeaders = headers;
     }
 
     @Override
@@ -72,8 +66,7 @@ public class MockHttpExchange extends HttpExchange {
     }
 
     @Override
-    public void sendResponseHeaders(int rCode, long responseLength) throws IOException {
-    }
+    public void sendResponseHeaders(int rCode, long responseLength) throws IOException {}
 
     @Override
     public InetSocketAddress getRemoteAddress() {

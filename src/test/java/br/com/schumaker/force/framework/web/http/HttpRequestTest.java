@@ -2,18 +2,15 @@ package br.com.schumaker.force.framework.web.http;
 
 import br.com.schumaker.force.framework.model.Pair;
 import com.sun.net.httpserver.Headers;
-import com.sun.net.httpserver.HttpExchange;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
-import java.net.URI;
 import java.util.List;
 import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
 
 public class HttpRequestTest {
     private MockHttpExchange exchange;
