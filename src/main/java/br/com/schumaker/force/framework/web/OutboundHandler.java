@@ -32,20 +32,22 @@ final class OutboundHandler {
      */
     public void processResponse(HttpResponse response) throws Exception {
         var result = response.body();
-        var httpCode = response.httpCode();
+        var defaultHttpCode = response.httpCode();
         var exchange = response.exchange();
         var returnType = response.typeResponseBody();
         var contentType = response.applicationType();
 
         // TODO: Check if this is necessary more types
         if (returnType.equals(String.class)) {
-            this.sendResponse(exchange, httpCode, contentType, (String) result);
+            this.sendResponse(exchange, defaultHttpCode, contentType, (String) result);
         } else if (returnType.equals(ResponseView.class)) {
-            var resultBody = objectMapper.writeValueAsString(((ResponseView<?>) result).getBody());
+            var resultBody = ((ResponseView<?>) result);
+            int httpCode = resultBody.getHttpCode();
+            var resultBodyJson = objectMapper.writeValueAsString(resultBody.getBody());
             this.processResponseHeaders(exchange, (ResponseView<?>) result);
-            this.sendResponse(exchange, httpCode,contentType, resultBody.equals("null") ? "" : resultBody);
+            this.sendResponse(exchange, httpCode, contentType, resultBodyJson.equals("null") ? "" : resultBodyJson);
         } else {
-            this.sendResponse(exchange, httpCode, contentType, result.toString());
+            this.sendResponse(exchange, defaultHttpCode, contentType, result.toString());
         }
     }
 

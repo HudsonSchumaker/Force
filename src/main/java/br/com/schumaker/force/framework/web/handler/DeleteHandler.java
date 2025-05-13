@@ -52,13 +52,13 @@ public final class DeleteHandler implements RequestHandler {
             }
 
             var method = mappingAndMethodAndParams.second();
-            var httpCode = method.getAnnotation(Delete.class).httpCode();
+            var defaultHttpCode = method.getAnnotation(Delete.class).httpCode();
             var applicationType = method.getAnnotation(Delete.class).type();
 
             try {
                 Object result = method.invoke(controller.getInstance(), arguments);
                 var methodReturnType = method.getReturnType();
-                return new HttpResponse(methodReturnType, result, httpCode, applicationType, request.exchange());
+                return new HttpResponse(methodReturnType, result, defaultHttpCode, applicationType, request.exchange());
             } catch (Exception ex) {
                 throw new ForceException("Error invoking method.", ex);
             }

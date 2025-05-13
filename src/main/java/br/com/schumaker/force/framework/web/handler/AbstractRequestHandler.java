@@ -74,11 +74,11 @@ public abstract class AbstractRequestHandler implements RequestHandler {
                 Method httpCodeMethod = annotationClass.getMethod("httpCode");
                 Method typeMethod = annotationClass.getMethod("type");
 
-                int httpCode = (int) httpCodeMethod.invoke(annotationInstance);
+                int defaultHttpCode = (int) httpCodeMethod.invoke(annotationInstance);
                 String applicationType = (String) typeMethod.invoke(annotationInstance);
 
                 Object result = method.invoke(controller.getInstance(), arguments);
-                return new HttpResponse(methodReturnType, result, httpCode, applicationType, request.exchange());
+                return new HttpResponse(methodReturnType, result, defaultHttpCode, applicationType, request.exchange());
             } catch (Exception ex) {
                 throw new ForceException("Error invoking method.", ex);
             }
