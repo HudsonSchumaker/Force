@@ -72,13 +72,13 @@ public final class PatchHandler implements RequestHandler {
             }
 
             try {
-                var httpCode = method.getAnnotation(Patch.class).httpCode();
+                var defaultHttpCode = method.getAnnotation(Patch.class).httpCode();
                 var applicationType = method.getAnnotation(Patch.class).type();
 
                 Object result = method.invoke(controller.getInstance(), arguments);
-                return new HttpResponse(methodReturnType, result, httpCode, applicationType, request.exchange());
+                return new HttpResponse(methodReturnType, result, defaultHttpCode, applicationType, request.exchange());
             } catch (Exception ex) {
-                throw new RuntimeException(ex.getMessage(), ex);
+                throw new ForceException(ex.getMessage(), ex);
             }
         } else {
             int httpCode = Http.HTTP_404;
