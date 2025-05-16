@@ -55,6 +55,28 @@ final class OutboundHandler {
      * Sends the response to the client.
      *
      * @param exchange the HttpExchange object containing the request and response.
+     * @param httpCode the HTTP status code.
+     * @param response the response body.
+     * @throws Exception if an error occurs during response sending.
+     */
+    public void sendResponse(HttpExchange exchange, int httpCode, String contentType, String response) throws Exception {
+        exchange.getResponseHeaders().add(CONTENT_TYPE, contentType);
+        // TODO: create a way to set the security, and check CORS
+        exchange.getResponseHeaders().add("Access-Control-Allow-Origin", "*");
+        exchange.getResponseHeaders().add("Access-Control-Allow-Methods", "GET, POST, PUT, PATCH, HEAD, OPTIONS");
+        exchange.getResponseHeaders().add("Access-Control-Allow-Headers", "Content-Type");
+
+        response = Optional.ofNullable(response).orElse("");
+        exchange.sendResponseHeaders(httpCode, response.getBytes().length);
+        try (OutputStream os = exchange.getResponseBody()) {
+            os.write(response.getBytes());
+        }
+    }
+
+    /**
+     * Sends the response to the client.
+     *
+     * @param exchange the HttpExchange object containing the request and response.
      * @throws Exception if an error occurs during response sending.
      */
     public void sendResponse(HttpExchange exchange) throws Exception {
@@ -82,28 +104,6 @@ final class OutboundHandler {
      */
     public void sendResponse(HttpExchange exchange, int httpCode, String response) throws Exception {
         this.sendResponse(exchange, httpCode, APPLICATION_JSON, response);
-    }
-
-    /**
-     * Sends the response to the client.
-     *
-     * @param exchange the HttpExchange object containing the request and response.
-     * @param httpCode the HTTP status code.
-     * @param response the response body.
-     * @throws Exception if an error occurs during response sending.
-     */
-    public void sendResponse(HttpExchange exchange, int httpCode, String contentType, String response) throws Exception {
-        exchange.getResponseHeaders().add(CONTENT_TYPE, contentType);
-        // TODO: create a way to set the security, and check CORS
-        exchange.getResponseHeaders().add("Access-Control-Allow-Origin", "*");
-        exchange.getResponseHeaders().add("Access-Control-Allow-Methods", "GET, POST, PUT, PATCH, HEAD, OPTIONS");
-        exchange.getResponseHeaders().add("Access-Control-Allow-Headers", "Content-Type");
-
-        response = Optional.ofNullable(response).orElse("");
-        exchange.sendResponseHeaders(httpCode, response.getBytes().length);
-        try (OutputStream os = exchange.getResponseBody()) {
-            os.write(response.getBytes());
-        }
     }
 
     /**
