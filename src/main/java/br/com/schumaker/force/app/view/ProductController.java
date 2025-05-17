@@ -16,6 +16,7 @@ import br.com.schumaker.force.framework.ioc.annotations.controller.QueryParam;
 import br.com.schumaker.force.framework.ioc.annotations.controller.Secured;
 import br.com.schumaker.force.framework.ioc.annotations.validations.Validate;
 import br.com.schumaker.force.framework.model.Mapper;
+import br.com.schumaker.force.framework.web.http.Http;
 import br.com.schumaker.force.framework.web.http.HttpRequestHeader;
 import br.com.schumaker.force.framework.web.view.Page;
 import br.com.schumaker.force.framework.web.view.ResponseView;
@@ -60,7 +61,11 @@ public class ProductController {
         var productDTOPage = mapper.from(productPage);
 
         //System.out.println(headers.headers().get("User-agent"));
-        return ResponseView.ok().body(productDTOPage).headers("info", name).build();
+        return ResponseView
+                .ok()
+                .body(productDTOPage)
+                .headers("info", name)
+                .build();
     }
 
     @Get("/count")

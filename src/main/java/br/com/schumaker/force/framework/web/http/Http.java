@@ -18,9 +18,10 @@ public final class Http {
     public static final String HTTP_OPTIONS = HttpVerb.OPTIONS.name();
 
     // Content Types
-    public static final String CONTENT_TYPE = "Content-Type";
+    public static final String CONTENT_TYPE = "Content-type";
     public static final String APPLICATION_JSON = "application/json";
     public static final String APPLICATION_XML = "application/xml";
+    public static final String APPLICATION_PDF = "application/pdf";
     public static final String APPLICATION_FORM = "application/x-www-form-urlencoded";
     public static final String MULTIPART_FORM = "multipart/form-data";
     public static final String TEXT_HTML = "text/html";

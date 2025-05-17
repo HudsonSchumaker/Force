@@ -11,8 +11,7 @@ import java.io.OutputStream;
 import java.util.Map;
 import java.util.Optional;
 
-import static br.com.schumaker.force.framework.web.http.Http.APPLICATION_JSON;
-import static br.com.schumaker.force.framework.web.http.Http.CONTENT_TYPE;
+import static br.com.schumaker.force.framework.web.http.Http.*;
 
 /**
  * The OutboundHandler class.
@@ -32,22 +31,22 @@ final class OutboundHandler {
      */
     public void processResponse(HttpResponse response) throws Exception {
         var result = response.body();
-        var defaultHttpCode = response.httpCode();
         var exchange = response.exchange();
         var returnType = response.typeResponseBody();
-        var contentType = response.applicationType();
+        var defaultHttpCode = response.httpCode();
+        var defaultContentType = response.applicationType();
 
         // TODO: Check if this is necessary more types
         if (returnType.equals(String.class)) {
-            this.sendResponse(exchange, defaultHttpCode, contentType, (String) result);
+            this.sendResponse(exchange, defaultHttpCode, defaultContentType, (String) result);
         } else if (returnType.equals(ResponseView.class)) {
             var resultBody = ((ResponseView<?>) result);
             int httpCode = resultBody.getHttpCode();
             var resultBodyJson = objectMapper.writeValueAsString(resultBody.getBody());
             this.processResponseHeaders(exchange, (ResponseView<?>) result);
-            this.sendResponse(exchange, httpCode, contentType, resultBodyJson.equals("null") ? "" : resultBodyJson);
+            this.sendResponse(exchange, httpCode, defaultContentType, resultBodyJson.equals("null") ? "" : resultBodyJson);
         } else {
-            this.sendResponse(exchange, defaultHttpCode, contentType, result.toString());
+            this.sendResponse(exchange, defaultHttpCode, defaultContentType, result.toString());
         }
     }
 
@@ -60,7 +59,10 @@ final class OutboundHandler {
      * @throws Exception if an error occurs during response sending.
      */
     public void sendResponse(HttpExchange exchange, int httpCode, String contentType, String response) throws Exception {
-        exchange.getResponseHeaders().add(CONTENT_TYPE, contentType);
+        if (!exchange.getResponseHeaders().containsKey(CONTENT_TYPE)) {
+            exchange.getResponseHeaders().add(CONTENT_TYPE, contentType);
+        }
+
         // TODO: create a way to set the security, and check CORS
         exchange.getResponseHeaders().add("Access-Control-Allow-Origin", "*");
         exchange.getResponseHeaders().add("Access-Control-Allow-Methods", "GET, POST, PUT, PATCH, HEAD, OPTIONS");
