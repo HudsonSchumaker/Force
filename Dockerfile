@@ -17,7 +17,7 @@ RUN apt-get update && apt-get install -y dos2unix && dos2unix gradlew
 RUN chmod +x gradlew
 
 # Build the app
-RUN ./gradlew clean build -x test --no-daemon
+RUN ./gradlew clean build -x test
 
 # Set environment variables
 ENV JWT_SECRET=testSecret
