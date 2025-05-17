@@ -25,12 +25,12 @@ import static br.com.schumaker.force.framework.web.http.Http.APPLICATION_JSON;
  * @see Http
  *
  * @author Hudson Schumaker
- * @version 1.0.0
+ * @version 1.0.1
  */
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Options {
     String value() default "/";
     String type() default APPLICATION_JSON;
-    int httpCode() default Http.HTTP_200;
+    int httpCode() default Http.HTTP_204;
 }

@@ -39,6 +39,14 @@ public interface IoC {
     ManagedController getController(String url);
 
     /**
+     * Get a managed controller by its class.
+     *
+     * @param clazz the class of the managed component
+     * @return the managed component
+     */
+    ManagedController getController(Class<?> clazz);
+
+    /**
      * Get a ManagedConfiguration by its fully qualified name.
      *
      * @param fqn the fully qualified name of the managed component

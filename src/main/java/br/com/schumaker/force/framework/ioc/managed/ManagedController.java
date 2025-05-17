@@ -7,10 +7,8 @@ import br.com.schumaker.force.framework.web.http.Http;
 
 import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * The ManagedController class represents a managed controller within the IoC container.
@@ -114,6 +112,18 @@ public final class ManagedController {
 
     private boolean isPathVariable(String part) {
         return part.startsWith("{") && part.endsWith("}");
+    }
+
+    public Set<String> getSupportedMethods() {
+        var verbs = new HashSet<String>();
+        for(var key : methods.keySet()) {
+            var methodList = methods.get(key);
+            if (!methodList.isEmpty()) {
+                verbs.add(key);
+            }
+        }
+
+        return verbs;
     }
 
     public String getFqn() {

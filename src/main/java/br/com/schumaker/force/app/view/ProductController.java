@@ -4,20 +4,11 @@ import br.com.schumaker.force.app.model.Product;
 import br.com.schumaker.force.app.service.ProductService;
 import br.com.schumaker.force.app.view.mapper.Product2ProductDTO;
 import br.com.schumaker.force.framework.ioc.annotations.bean.Value;
-import br.com.schumaker.force.framework.ioc.annotations.controller.Controller;
-import br.com.schumaker.force.framework.ioc.annotations.controller.Delete;
-import br.com.schumaker.force.framework.ioc.annotations.controller.Get;
-import br.com.schumaker.force.framework.ioc.annotations.controller.Patch;
-import br.com.schumaker.force.framework.ioc.annotations.controller.PathVariable;
-import br.com.schumaker.force.framework.ioc.annotations.controller.Payload;
-import br.com.schumaker.force.framework.ioc.annotations.controller.Post;
-import br.com.schumaker.force.framework.ioc.annotations.controller.Put;
-import br.com.schumaker.force.framework.ioc.annotations.controller.QueryParam;
-import br.com.schumaker.force.framework.ioc.annotations.controller.Secured;
+import br.com.schumaker.force.framework.ioc.annotations.controller.*;
 import br.com.schumaker.force.framework.ioc.annotations.validations.Validate;
 import br.com.schumaker.force.framework.model.Mapper;
-import br.com.schumaker.force.framework.web.http.Http;
 import br.com.schumaker.force.framework.web.http.HttpRequestHeader;
+import br.com.schumaker.force.framework.web.view.ControllerOptions;
 import br.com.schumaker.force.framework.web.view.Page;
 import br.com.schumaker.force.framework.web.view.ResponseView;
 
@@ -178,5 +169,13 @@ public class ProductController {
         service.delete(product);
 
         return ResponseView.noContent().build();
+    }
+
+    @Options
+    public ResponseView<Void> options() {
+        return ResponseView
+                .noContent()
+                .headers("Allow", String.join(", ", ControllerOptions.getAllowedMethods(this.getClass())))
+                .build();
     }
 }

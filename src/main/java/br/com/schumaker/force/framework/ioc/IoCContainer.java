@@ -57,6 +57,14 @@ public final class IoCContainer implements IoC {
     }
 
     @Override
+    public ManagedController getController(Class<?> clazz) {
+        return managedController.stream()
+                .filter(it -> it.getFqn().equals(clazz.getName()))
+                .findFirst()
+                .orElse(null);
+    }
+
+    @Override
     public ManagedConfiguration getConfiguration(String fqn) {
         return getManagedClass(fqn, ManagedConfiguration.class);
     }
