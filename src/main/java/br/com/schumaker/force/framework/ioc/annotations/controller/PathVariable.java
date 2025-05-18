@@ -33,6 +33,8 @@ import java.lang.annotation.Target;
  * @see Post
  * @see Patch
  * @see Delete
+ * @see Header
+ * @see Options
  * @see Payload
  * @see Controller
  * @see QueryParam
