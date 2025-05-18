@@ -29,7 +29,7 @@ import static br.com.schumaker.force.framework.web.http.Http.APPLICATION_JSON;
  */
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface Head {
+public @interface Header {
     String value() default "/";
     String type() default APPLICATION_JSON;
     int httpCode() default Http.HTTP_200;

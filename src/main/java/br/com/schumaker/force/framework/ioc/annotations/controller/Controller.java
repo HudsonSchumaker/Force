@@ -37,7 +37,7 @@ import java.lang.annotation.Target;
  * @see Put
  * @see Patch
  * @see Delete
- * @see Head
+ * @see Header
  * @see Options
  *
  * @author Hudson Schumaker

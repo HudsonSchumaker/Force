@@ -46,7 +46,7 @@ import static br.com.schumaker.force.framework.web.http.Http.APPLICATION_JSON;
  * @see Patch
  * @see Delete
  * @see Controller
- * @see Head
+ * @see Header
  * @see Options
  *
  * @author Hudson Schumaker

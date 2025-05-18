@@ -3,7 +3,7 @@ package br.com.schumaker.force.framework.ioc.reflection;
 import br.com.schumaker.force.framework.ioc.annotations.controller.Controller;
 import br.com.schumaker.force.framework.ioc.annotations.controller.Delete;
 import br.com.schumaker.force.framework.ioc.annotations.controller.Get;
-import br.com.schumaker.force.framework.ioc.annotations.controller.Head;
+import br.com.schumaker.force.framework.ioc.annotations.controller.Header;
 import br.com.schumaker.force.framework.ioc.annotations.controller.Options;
 import br.com.schumaker.force.framework.ioc.annotations.controller.Patch;
 import br.com.schumaker.force.framework.ioc.annotations.controller.Post;
@@ -40,7 +40,7 @@ public final class ControllerReflection {
         annotationMap.put(Put.class, HttpVerb.PUT);
         annotationMap.put(Patch.class, HttpVerb.PATCH);
         annotationMap.put(Delete.class, HttpVerb.DELETE);
-        annotationMap.put(Head.class, HttpVerb.HEAD);
+        annotationMap.put(Header.class, HttpVerb.HEAD);
         annotationMap.put(Options.class, HttpVerb.OPTIONS);
     }
 

@@ -178,4 +178,15 @@ public class ProductController {
                 .headers("Allow", String.join(", ", ControllerOptions.getAllowedMethods(this.getClass())))
                 .build();
     }
+
+    @Header
+    public ResponseView<Void> header() {
+        var productPage = service.list();
+
+        return ResponseView.noContent()
+                .headers("X-Total-Count", String.valueOf(productPage.getTotalElements()))
+                .headers("X-Total-Pages", String.valueOf(productPage.getTotalPages()))
+                .headers("X-Page-Size", String.valueOf(productPage.getPageSize()))
+                .build();
+    }
 }
