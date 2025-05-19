@@ -2,7 +2,6 @@
 A brief description for your project:
 
 ---
-
 **Project Description:**
 
 The framework, named Force, provides a lightweight and modular structure for developing rest services. It includes custom annotations for defining application components such as controllers and services, and an IoC (Inversion of Control) container for managing dependencies.
