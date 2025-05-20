@@ -43,7 +43,7 @@ public final class GetHandler implements RequestHandler {
             var pathVariables = controller.extractPathVariables(mapping, methodPath);
             var queryParameters = request.getQueryParams();
 
-            for (short i = 0; i < parameters.size(); i++) {
+            for (int i = 0; i < parameters.size(); i++) {
                 if (parameters.get(i).isAnnotationPresent(PathVariable.class)) {
                     arguments[i] = AbstractRequestHandler.convertToType(pathVariables.get(i), parameters.get(i).getType());
                     continue;

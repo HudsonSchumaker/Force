@@ -75,7 +75,7 @@ public final class ManagedController {
             return false;
         }
 
-        for (short i = 0; i < patternParts.size(); i++) {
+        for (int i = 0; i < patternParts.size(); i++) {
             if (!isPathVariable(patternParts.get(i)) && !patternParts.get(i).equals(pathParts.get(i))) {
                 return false;
             }
@@ -89,7 +89,7 @@ public final class ManagedController {
         var pathParts = splitAndFilter(path);
 
         List<Object> variables = new ArrayList<>();
-        for (short i = 0; i < patternParts.size(); i++) {
+        for (int i = 0; i < patternParts.size(); i++) {
             if (isPathVariable(patternParts.get(i))) {
                 variables.add(pathParts.get(i));
             }
