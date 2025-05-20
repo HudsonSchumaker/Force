@@ -13,7 +13,7 @@ import java.net.URI;
 
 public class MockHttpExchange extends HttpExchange {
     private Headers requestHeaders = new Headers();
-    private Headers responseHeaders = new Headers();
+    private final Headers responseHeaders = new Headers();
     private InputStream requestBody;
 
     public MockHttpExchange() {}
