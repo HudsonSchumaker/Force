@@ -8,7 +8,7 @@ import br.com.schumaker.force.framework.ioc.annotations.controller.*;
 import br.com.schumaker.force.framework.ioc.annotations.validations.Validate;
 import br.com.schumaker.force.framework.model.Mapper;
 import br.com.schumaker.force.framework.web.http.HttpRequestHeader;
-import br.com.schumaker.force.framework.web.view.ControllerOptions;
+import br.com.schumaker.force.framework.web.view.Controllers;
 import br.com.schumaker.force.framework.web.view.Page;
 import br.com.schumaker.force.framework.web.view.ResponseView;
 
@@ -22,6 +22,7 @@ import java.util.Map;
  *  It is responsible for controlling the product operations.
  *
  * @see Controller
+ * @see Controllers
  * @see Get
  * @see Put
  * @see Post
@@ -175,7 +176,7 @@ public class ProductController {
     public ResponseView<Void> options(HttpRequestHeader headers) {
         return ResponseView
                 .noContent()
-                .headers("Allow", String.join(", ", ControllerOptions.getAllowedMethods(this.getClass())))
+                .headers("Allow", String.join(", ", Controllers.getAllowedMethods(this.getClass())))
                 .build();
     }
 

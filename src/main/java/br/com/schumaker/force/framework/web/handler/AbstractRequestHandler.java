@@ -53,7 +53,7 @@ public abstract class AbstractRequestHandler implements RequestHandler {
             var arguments = new Object[parameters.size()];
             var pathVariables = controller.extractPathVariables(mapping, methodPath);
 
-            for (short i = 0; i < parameters.size(); i++) {
+            for (int i = 0; i < parameters.size(); i++) {
                 if (parameters.get(i).isAnnotationPresent(PathVariable.class)) {
                     arguments[i] = convertToType(pathVariables.get(i), parameters.get(i).getType());
                     continue;
@@ -97,7 +97,7 @@ public abstract class AbstractRequestHandler implements RequestHandler {
      * @param index      the index of the argument.
      * @param arguments  the arguments to be validated.
      */
-    public static void validateBody(HttpRequest request, Parameter parameter, short index, Object[] arguments) {
+    public static void validateBody(HttpRequest request, Parameter parameter, int index, Object[] arguments) {
         try {
             if (parameter.isAnnotationPresent(Validate.class)) {
                 var requestBody = request.readRequestBody();

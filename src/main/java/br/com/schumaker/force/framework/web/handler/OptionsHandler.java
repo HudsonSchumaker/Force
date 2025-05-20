@@ -9,7 +9,7 @@ import br.com.schumaker.force.framework.web.http.HttpRequest;
 import br.com.schumaker.force.framework.web.http.HttpRequestHeader;
 import br.com.schumaker.force.framework.web.http.HttpResponse;
 
-import java.util.List;
+import static br.com.schumaker.force.framework.web.view.Controllers.CONTROLLER_NOT_FOUND;
 
 /**
  * The OptionsHandler class.
@@ -20,7 +20,6 @@ import java.util.List;
  */
 public final class OptionsHandler implements RequestHandler {
     private static final IoCContainer container = IoCContainer.getInstance();
-    private static final String CONTROLLER_NOT_FOUND = "Controller not found.";
 
     /**
      * Process the HTTP_OPTIONS request.
@@ -46,12 +45,12 @@ public final class OptionsHandler implements RequestHandler {
         var mappingAndMethodAndParams = controller.getMethod(methodPath, Http.HTTP_OPTIONS);
         var method = mappingAndMethodAndParams.second();
         var parameters = mappingAndMethodAndParams.third();
-        var arguments = prepareArguments(parameters);
         var defaultHttpCode = method.getAnnotation(Options.class).httpCode();
         var applicationType = method.getAnnotation(Options.class).type();
 
+        var arguments = new Object[parameters.size()];
         try {
-            for (short i = 0; i < parameters.size(); i++) {
+            for (int i = 0; i < parameters.size(); i++) {
                 if (parameters.get(i).getType().equals(HttpRequestHeader.class)) {
                     arguments[i] = new HttpRequestHeader(request.getRequestHeaders());
                 }
@@ -62,16 +61,6 @@ public final class OptionsHandler implements RequestHandler {
         } catch (Exception ex) {
             throw new ForceException("Error invoking method: " + method.getName(), ex);
         }
-    }
-
-    /**
-     * Prepare the arguments for the method invocation.
-     *
-     * @param parameters the parameters of the method.
-     * @return the prepared arguments.
-     */
-    private Object[] prepareArguments(List<?> parameters) {
-        return new Object[parameters.size()];
     }
 
     /**

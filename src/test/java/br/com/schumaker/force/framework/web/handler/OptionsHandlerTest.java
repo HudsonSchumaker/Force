@@ -30,10 +30,11 @@ public class OptionsHandlerTest {
         String fullUrl = "http://localhost:8080/context/controller/";
         HttpRequest request = new HttpRequest(fullUrl, exchange);
 
+        // Act
         var handler = new OptionsHandler();
         var response = handler.processRequest(request);
 
-        // Validate the response
+        // Assert
         assertNotNull(response);
         assertEquals(204, response.httpCode());
     }
@@ -45,10 +46,11 @@ public class OptionsHandlerTest {
         String fullUrl = "http://localhost:8080/context/invalid-controller/";
         HttpRequest request = new HttpRequest(fullUrl, exchange);
 
+        // Act
         var handler = new OptionsHandler();
         var response = handler.processRequest(request);
 
-        // Validate the response
+        // Assert
         assertNotNull(response);
         assertEquals(404, response.httpCode());
     }

@@ -6,13 +6,14 @@ import br.com.schumaker.force.framework.ioc.IoCContainer;
 import java.util.Set;
 
 /**
- * The ControllerOptions class.
+ * The Controllers class.
  * This class is responsible for retrieving the allowed HTTP methods for a given controller.
  *
  * @author Hudson Schumaker
  * @version 1.0.0
  */
-public final class ControllerOptions {
+public final class Controllers {
+    public static final String CONTROLLER_NOT_FOUND = "Controller not found.";
 
     /**
      * Get the allowed HTTP methods for a given controller class.

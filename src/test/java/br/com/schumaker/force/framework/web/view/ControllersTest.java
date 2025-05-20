@@ -10,7 +10,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class ControllerOptionsTest {
+public class ControllersTest {
 
     @Test
     public void testGetControllerOption() {
@@ -18,7 +18,7 @@ public class ControllerOptionsTest {
         IoCContainer.getInstance().registerController(List.of(MyController.class));
 
         // Act
-       var options = ControllerOptions.getAllowedMethods(MyController.class);
+       var options = Controllers.getAllowedMethods(MyController.class);
 
         // Assert
         assertNotNull(options);
@@ -32,7 +32,7 @@ public class ControllerOptionsTest {
         IoCContainer.getInstance().registerController(List.of(MyController.class));
 
         // Act & Assert
-        assertThrows(ForceException.class, ()-> ControllerOptions.getAllowedMethods(Controller.class));
+        assertThrows(ForceException.class, ()-> Controllers.getAllowedMethods(Controller.class));
     }
 
     // Test controller class
