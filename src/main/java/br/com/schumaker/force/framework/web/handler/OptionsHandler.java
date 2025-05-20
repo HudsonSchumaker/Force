@@ -6,7 +6,10 @@ import br.com.schumaker.force.framework.ioc.annotations.controller.Options;
 import br.com.schumaker.force.framework.ioc.managed.ManagedController;
 import br.com.schumaker.force.framework.web.http.Http;
 import br.com.schumaker.force.framework.web.http.HttpRequest;
+import br.com.schumaker.force.framework.web.http.HttpRequestHeader;
 import br.com.schumaker.force.framework.web.http.HttpResponse;
+
+import java.util.List;
 
 /**
  * The OptionsHandler class.
@@ -40,17 +43,24 @@ public final class OptionsHandler implements RequestHandler {
     }
 
     private HttpResponse processControllerRequest(ManagedController controller, String methodPath, HttpRequest request) {
+        var mappingAndMethodAndParams = controller.getMethod(methodPath, Http.HTTP_OPTIONS);
+        var method = mappingAndMethodAndParams.second();
+        var parameters = mappingAndMethodAndParams.third();
+        var arguments = prepareArguments(parameters);
+        var defaultHttpCode = method.getAnnotation(Options.class).httpCode();
+        var applicationType = method.getAnnotation(Options.class).type();
+
         try {
-            var mappingAndMethodAndParams = controller.getMethod(methodPath, Http.HTTP_OPTIONS);
-            var method = mappingAndMethodAndParams.second();
-            var arguments = prepareArguments(mappingAndMethodAndParams.third());
-            var defaultHttpCode = method.getAnnotation(Options.class).httpCode();
-            var applicationType = method.getAnnotation(Options.class).type();
+            for (short i = 0; i < parameters.size(); i++) {
+                if (parameters.get(i).getType().equals(HttpRequestHeader.class)) {
+                    arguments[i] = new HttpRequestHeader(request.getRequestHeaders());
+                }
+            }
 
             Object result = method.invoke(controller.getInstance(), arguments);
             return createSuccessResponse(method.getReturnType(), result, defaultHttpCode, applicationType, request);
         } catch (Exception ex) {
-            throw new ForceException("Error invoking method.", ex);
+            throw new ForceException("Error invoking method: " + method.getName(), ex);
         }
     }
 
@@ -60,7 +70,7 @@ public final class OptionsHandler implements RequestHandler {
      * @param parameters the parameters of the method.
      * @return the prepared arguments.
      */
-    private Object[] prepareArguments(java.util.List<?> parameters) {
+    private Object[] prepareArguments(List<?> parameters) {
         return new Object[parameters.size()];
     }
 

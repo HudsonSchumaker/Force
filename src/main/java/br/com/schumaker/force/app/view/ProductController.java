@@ -172,7 +172,7 @@ public class ProductController {
     }
 
     @Options
-    public ResponseView<Void> options() {
+    public ResponseView<Void> options(HttpRequestHeader headers) {
         return ResponseView
                 .noContent()
                 .headers("Allow", String.join(", ", ControllerOptions.getAllowedMethods(this.getClass())))
