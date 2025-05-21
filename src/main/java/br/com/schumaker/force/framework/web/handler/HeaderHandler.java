@@ -105,7 +105,6 @@ public final class HeaderHandler implements RequestHandler {
         } catch (Exception ex) {
             throw new ForceException("Error processing request, method: " + method.getName(), ex);
         }
-
         return arguments;
     }
 
