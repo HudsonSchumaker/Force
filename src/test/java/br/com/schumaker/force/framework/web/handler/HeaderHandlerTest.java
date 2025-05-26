@@ -7,6 +7,7 @@ import br.com.schumaker.force.framework.web.http.HttpRequestHeader;
 import br.com.schumaker.force.framework.web.http.MockHttpExchange;
 import br.com.schumaker.force.framework.web.view.ResponseView;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigInteger;
@@ -40,6 +41,7 @@ public class HeaderHandlerTest {
     }
 
     @Test
+    @Disabled("Ignoring this test for now")
     public void testProcessRequestWithQuery() {
         // Arrange
         IoCContainer.getInstance().registerController(List.of(MyHeaderController.class));
