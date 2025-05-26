@@ -8,7 +8,6 @@ import br.com.schumaker.force.framework.web.http.Http;
 import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
 import java.util.*;
-import java.util.stream.Collectors;
 
 /**
  * The ManagedController class represents a managed controller within the IoC container.

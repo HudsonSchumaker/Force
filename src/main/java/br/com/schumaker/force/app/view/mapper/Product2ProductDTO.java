@@ -8,7 +8,6 @@ import br.com.schumaker.force.framework.web.view.Page;
 import br.com.schumaker.force.framework.web.view.PageImpl;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * The Product2ProductDTO class.
@@ -44,7 +43,7 @@ public class Product2ProductDTO implements ModelViewMapper<Product, ProductDTO> 
     public Page<ProductDTO> from(Page<Product> productPage) {
         List<ProductDTO> content = productPage.getContent().stream()
                 .map(this::from)
-                .collect(Collectors.toList());
+                .toList();
 
         return new PageImpl<>(
                 content,

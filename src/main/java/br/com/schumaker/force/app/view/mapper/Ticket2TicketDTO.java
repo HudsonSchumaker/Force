@@ -8,7 +8,6 @@ import br.com.schumaker.force.framework.web.view.Page;
 import br.com.schumaker.force.framework.web.view.PageImpl;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Component
 public class Ticket2TicketDTO implements ModelViewMapper<Ticket, TicketDTO> {
@@ -29,7 +28,7 @@ public class Ticket2TicketDTO implements ModelViewMapper<Ticket, TicketDTO> {
     public Page<TicketDTO> from(Page<Ticket> ticketPage) {
         List<TicketDTO> content = ticketPage.getContent().stream()
                 .map(this::from)
-                .collect(Collectors.toList());
+                .toList();
 
         return new PageImpl<>(
                 content,
