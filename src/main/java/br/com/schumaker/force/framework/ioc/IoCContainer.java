@@ -11,7 +11,6 @@ import br.com.schumaker.force.framework.ioc.managed.ManagedService;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.stream.Collectors;
 
 /**
  * The IoCContainer class represents the Inversion of Control (IoC) container.
@@ -28,7 +27,7 @@ import java.util.stream.Collectors;
  * @see ManagedGlobalExceptionHandler
  *
  * @author Hudson Schumaker
- * @version 1.2.0
+ * @version 1.3.0
  */
 public final class IoCContainer implements IoC {
     private static final IoCContainer INSTANCE = new IoCContainer();
@@ -130,7 +129,14 @@ public final class IoCContainer implements IoC {
     public List<ManagedComponent> getComponents() {
         return managedClasses.values().stream().filter(m -> m instanceof ManagedComponent)
                 .map(m -> (ManagedComponent) m)
-                .collect(Collectors.toList());
+                .toList();
+    }
+
+    @Override
+    public List<ManagedService> getServices() {
+        return managedClasses.values().stream().filter(m -> m instanceof ManagedService)
+                .map(m -> (ManagedService) m)
+                .toList();
     }
 
     /**

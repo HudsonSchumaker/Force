@@ -19,7 +19,7 @@ import java.util.List;
  * @see ManagedGlobalExceptionHandler
  *
  * @author Hudson Schumaker
- * @version 1.0.0
+ * @version 1.2.0
  */
 public interface IoC {
 
@@ -141,4 +141,11 @@ public interface IoC {
      * @return the list of managed components
      */
     List<ManagedComponent> getComponents();
+
+    /**
+     * Get a list of managed services.
+     *
+     * @return the list of managed services
+     */
+    List<ManagedService> getServices();
 }
