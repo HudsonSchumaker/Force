@@ -88,7 +88,6 @@ public final class TypeConverter {
             Function<Object, Object> converter = sqlMap.get(targetType);
             if (converter != null) {
                 return converter.apply(value);
-
             }
         }
 
