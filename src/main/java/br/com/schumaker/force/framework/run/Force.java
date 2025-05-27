@@ -10,6 +10,7 @@ import br.com.schumaker.force.framework.ioc.annotations.exception.GlobalExceptio
 import br.com.schumaker.force.framework.exception.ExceptionCodes;
 import br.com.schumaker.force.framework.exception.ForceException;
 import br.com.schumaker.force.framework.ioc.AppProperties;
+import br.com.schumaker.force.framework.ioc.reflection.MethodReflection;
 import br.com.schumaker.force.framework.jdbc.SimpleConnectionPool;
 import br.com.schumaker.force.framework.jdbc.SqlExecutor;
 import br.com.schumaker.force.framework.web.WebServer;
@@ -25,7 +26,7 @@ import java.util.List;
  * This class is responsible for bootstrapping the application and starting the web server.
  *
  * @author Hudson Schumaker
- * @version 1.0.0
+ * @version 1.1.0
  */
 public final class Force {
     private static final String HEALTH_PACKAGE = "br.com.schumaker.force.framework.web.health";
@@ -48,6 +49,7 @@ public final class Force {
         executeSqlScripts();
         createManagedClasses(clazz);
         startWebServer();
+        createScheduledTasks();
     }
 
     /**
@@ -139,6 +141,30 @@ public final class Force {
         System.out.println("SQL: schema.sql executed.");
         SqlExecutor.executeFromFile("/data.sql");
         System.out.println("SQL: data.sql executed.");
+    }
+
+    private static void createScheduledTasks() {
+        container.getComponents().forEach(
+             component -> {
+                 try {
+                     MethodReflection.getInstance().scheduleTask(component.getInstance());
+                 } catch (ForceException ex) {
+                    throw new ForceException("Error scheduling task in component: " + component.getClass().getName());
+                 }
+             }
+        );
+
+        container.getServices().forEach(
+             service -> {
+                 try {
+                     MethodReflection.getInstance().scheduleTask(service.getInstance());
+                 } catch (ForceException ex) {
+                    throw new ForceException("Error scheduling task in service: " + service.getClass().getName());
+                 }
+             }
+        );
+
+        System.out.println("Scheduler: tasks scheduled.");
     }
 
     /**

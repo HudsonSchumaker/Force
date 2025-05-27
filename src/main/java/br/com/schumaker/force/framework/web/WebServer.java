@@ -1,5 +1,6 @@
 package br.com.schumaker.force.framework.web;
 
+import br.com.schumaker.force.framework.scheduler.Scheduler;
 import com.sun.net.httpserver.HttpServer;
 import java.net.InetSocketAddress;
 import java.util.concurrent.Executors;
@@ -33,6 +34,7 @@ public final class WebServer {
         // Register a shutdown hook to stop the server gracefully
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
             System.out.println("Shutting down the server...");
+            Scheduler.shutdown();
             server.stop(0);
         }));
     }
