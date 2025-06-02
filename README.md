@@ -336,4 +336,3 @@ CREATE TABLE product (
       private String password;
   }
   ```
-
