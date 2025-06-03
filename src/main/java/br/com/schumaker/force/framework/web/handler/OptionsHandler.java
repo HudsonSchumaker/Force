@@ -41,6 +41,14 @@ public final class OptionsHandler implements RequestHandler {
         return processControllerRequest(controller, methodPath, request);
     }
 
+    /**
+     * Process the controller request for HTTP_OPTIONS method.
+     *
+     * @param controller   the managed controller.
+     * @param methodPath   the method path.
+     * @param request      the HTTP request.
+     * @return the HTTP response.
+     */
     private HttpResponse processControllerRequest(ManagedController controller, String methodPath, HttpRequest request) {
         var mappingAndMethodAndParams = controller.getMethod(methodPath, Http.HTTP_OPTIONS);
         var method = mappingAndMethodAndParams.second();
