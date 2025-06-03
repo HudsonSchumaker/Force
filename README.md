@@ -312,6 +312,7 @@ CREATE TABLE product (
       private int score;
   }
   ```
+
 ### 20. `@Regex`
 - **Purpose**: Marks a field as a regex value.
 - **Attributes**:
