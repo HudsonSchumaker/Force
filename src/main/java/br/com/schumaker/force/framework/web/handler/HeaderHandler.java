@@ -43,6 +43,14 @@ public final class HeaderHandler implements RequestHandler {
         return this.processControllerRequest(controller, methodPath, request);
     }
 
+    /**
+     * Process the controller request.
+     *
+     * @param controller  the managed controller.
+     * @param methodPath  the method path.
+     * @param request     the HTTP request.
+     * @return the HTTP response.
+     */
     private HttpResponse processControllerRequest(ManagedController controller, String methodPath, HttpRequest request) {
         var mappingAndMethodAndParams = controller.getMethod(methodPath, HTTP_HEADER);
         var mapping = mappingAndMethodAndParams.first();
