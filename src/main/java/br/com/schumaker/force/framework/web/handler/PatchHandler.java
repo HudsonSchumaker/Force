@@ -53,6 +53,14 @@ public final class PatchHandler implements RequestHandler {
         return this.processControllerRequest(controller, methodPath, request);
     }
 
+    /**
+     * Process the controller request for HTTP_PATCH method.
+     *
+     * @param controller the managed controller.
+     * @param methodPath the method path.
+     * @param request    the HTTP request.
+     * @return the HTTP response.
+     */
     private HttpResponse processControllerRequest(ManagedController controller, String methodPath, HttpRequest request) {
         var mappingAndMethodAndParams = controller.getMethod(methodPath, HTTP_PATCH);
         var mapping = mappingAndMethodAndParams.first();
