@@ -299,6 +299,7 @@ CREATE TABLE product (
       private Date birthDate;
   }
   ```
+  
 ### 19. `@Range`
 - **Purpose**: Marks a field as a range value.
 - **Attributes**:
