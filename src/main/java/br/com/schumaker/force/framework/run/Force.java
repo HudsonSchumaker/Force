@@ -143,6 +143,10 @@ public final class Force {
         System.out.println("SQL: data.sql executed.");
     }
 
+    /**
+     * Creates scheduled tasks for components and services that have scheduled methods.
+     * It uses MethodReflection to find and schedule these tasks.
+     */
     private static void createScheduledTasks() {
         container.getComponents().forEach(
              component -> {
